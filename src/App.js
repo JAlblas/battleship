@@ -1,11 +1,14 @@
 import './App.css';
 
 import Ship from './factories/Ship'
+import Gameboard from './factories/Gameboard'
 
 function App() {
 
-  let ship = Ship(5);
-  console.log(ship);
+  let board = Gameboard();
+  board.placeShip([[4,8], [4,9]]);
+  board.receiveAttack([4,8]);
+  console.log(board);
 
   return (
     <div className="App">
