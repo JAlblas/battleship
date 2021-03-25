@@ -36,7 +36,9 @@ const Game = () => {
     return (
         <div className="Game">
           <h1>Battleship</h1>
+          <h3>Enemy area</h3>
           <div id="pc-grid" className="grid">{listItemsEnemy}</div>
+          <h3>Player area</h3>
           <div id="human-grid" className="grid">{listItemsOwn}</div>
           
         </div>
