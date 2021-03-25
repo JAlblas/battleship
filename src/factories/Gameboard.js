@@ -25,6 +25,7 @@ const Gameboard = () => {
         const [x, y] = coords;
         if (grid[x][y] !== "") {
             grid[x][y].hit(coords);
+            console.log(grid[x][y]);
         }
     }
 

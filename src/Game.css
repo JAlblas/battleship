@@ -1,0 +1,19 @@
+.Game {
+  text-align: center;
+}
+
+#human-grid {
+}
+
+#pc-grid {
+
+}
+
+.grid {
+  margin: 0 auto;
+  width: 800px;
+  border: 1px solid black;
+  display: grid;
+  grid-template-rows: repeat(10, 1fr);
+  grid-template-columns: repeat(10, 1fr);
+}
