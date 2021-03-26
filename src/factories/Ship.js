@@ -1,10 +1,10 @@
-const Ship = (coordsList) => {
-    let shipLength = coordsList.length;
+const Ship = (coordList) => {
+    let shipLength = coordList.length;
     let hits = Array(shipLength).fill(false);
     let sunk = false;
 
-    const hit = (coords) => {
-        hits.push(coords);
+    const hit = (coord) => {
+        hits.push(coord);
      }
     
      const isSunk = () => {

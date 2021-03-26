@@ -2,30 +2,30 @@ import Ship from './Ship'
 
 const Gameboard = () => {
     const missedAttacks = [];
-    const ships = [];
+    const ships = [2,3,3,4,5];
     const grid = initializeGrid();
 
     function initializeGrid() {
         let grid = [];
-        for (let i = 0; i < 10; i++) {
-          grid[i] = ["", "", "", "", "", "", "", "", "", ""];
+        for (let i = 0; i < 100; i++) {
+          grid.push({hasShip: false, isShot: false})
         }
         return grid;
     }
 
-    const placeShip = (coords) => {
-        let newShip = Ship(coords);
-        coords.forEach(coord => {
-            const [x, y] = coord;
-            grid[x][y] = newShip;
+    function placeShips() {
+        ships.forEach(ship => {
+            let randomCoord = Math.floor(Math.random() * 100);
+            let newShip = Ship(randomCoord);
+            grid[randomCoord] = newShip;
         });
+        console.log(grid);
     }
 
-    const receiveAttack = (coords) => {
-        const [x, y] = coords;
-        if (grid[x][y] !== "") {
-            grid[x][y].hit(coords);
-            console.log(grid[x][y]);
+    const receiveAttack = (coord) => {
+        if (grid[coord] !== "") {
+            console.log(grid[coord])
+            grid[coord].hasShip = true;
         }
     }
 
@@ -37,7 +37,7 @@ const Gameboard = () => {
         missedAttacks,
         ships,
         grid,
-        placeShip,
+        placeShips,
         receiveAttack,
         isGameOver
     };
