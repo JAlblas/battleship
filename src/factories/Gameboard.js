@@ -15,9 +15,18 @@ const Gameboard = () => {
 
     function placeShips() {
         ships.forEach(ship => {
-            let randomCoord = Math.floor(Math.random() * 100);
-            let newShip = Ship(randomCoord);
-            grid[randomCoord] = newShip;
+            const coordList = [];
+            let randomStartCoord = Math.floor(Math.random() * 90);
+            coordList.push(randomStartCoord);
+
+            for (let index = 1; index < ship; index++) {
+                coordList.push(randomStartCoord + index);  
+            }
+            let newShip = Ship(coordList);
+
+            for (let index = 0; index < ship; index++) {
+                grid[randomStartCoord + index].hasShip = true;  
+            }
         });
         console.log(grid);
     }

@@ -1,47 +1,55 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import './Game.css';
 
 import Gameboard from './factories/Gameboard'
 import Player from './factories/Player'
 import GridCell from './components/GridCell'
+import BoardRender from './components/BoardRender'
 
 const Game = () => {
     const players = [Player(true), Player(false)];
-    let currentplayer = 0;
+    const [currentplayer, setCurrentPlayer] = useState(0);
+    const enemyBoard = Gameboard();
+    const ownBoard = Gameboard();
 
-    let enemyBoard = Gameboard();
-    enemyBoard.placeShips();
-    enemyBoard.receiveAttack([41]);
+    useEffect( () => {
+      if (!players[currentplayer].humanPlayer) {
+        console.log("PC MOVE START");
+        setTimeout(function () {
+          console.log("PC MODE MADE")
+        }, 1000);
+      }; 
+    },
+    [currentplayer],
+    )
 
-    let ownBoard = Gameboard();
-    ownBoard.placeShips();
-    ownBoard.receiveAttack([25]);
-  
+    useEffect( () => {
+      enemyBoard.placeShips();
+      enemyBoard.receiveAttack([41]);
+
+      ownBoard.placeShips();
+      ownBoard.receiveAttack([25]);
+    })
+
     const setupGame = () => {
       
     }
 
     const makeMove = () => {
       console.log("making move!");
+      currentplayer === 0 ? setCurrentPlayer(1) : setCurrentPlayer(0);
     }
-  
-    const listItemsEnemy = enemyBoard.grid.map((cell, index) =>
-        <GridCell index={index} key={index} handleClick={makeMove}/>
-    );
-
-    const listItemsOwn = ownBoard.grid.map((cell, index) =>
-      <GridCell index={index} key={index}/>
-    );
 
     return (
         <div className="Game">
           <h1>Battleship</h1>
           <h3>Enemy area</h3>
-          <div id="pc-grid" className="grid">{listItemsEnemy}</div>
+          <BoardRender board={enemyBoard} makeMove={makeMove}/>
+          <div id="pc-grid" className="grid"></div>
           <h3>Player area</h3>
-          <div id="human-grid" className="grid" ships={ownBoard.ships}>{listItemsOwn}</div>
-          
+          <BoardRender board={ownBoard} makeMove={makeMove}/>
+          <div id="human-grid" className="grid" ships={ownBoard.ships}></div>
         </div>
     );
 }
