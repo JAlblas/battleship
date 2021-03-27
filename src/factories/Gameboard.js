@@ -31,10 +31,14 @@ const Gameboard = () => {
         console.log(grid);
     }
 
-    const receiveAttack = (coord) => {
-        if (grid[coord] !== "") {
-            console.log(grid[coord])
-            grid[coord].hasShip = true;
+    const receiveAttack = (moveCoord) => {
+        console.log(moveCoord);
+        console.log(grid[moveCoord]);
+        if (grid[moveCoord] !== "") {
+            grid[moveCoord].isShot = true;
+            if (grid[moveCoord].hasShip) {
+                console.log("BOOM!");
+            }
         }
     }
 
