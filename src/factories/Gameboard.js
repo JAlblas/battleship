@@ -13,6 +13,7 @@ const Gameboard = () => {
     }
 
     function placeShips() {
+        console.log("placing ships!");
         ships.forEach(ship => {
             const coordList = [];
             let randomStartCoord = Math.floor(Math.random() * 90);

@@ -8,7 +8,6 @@ import BoardRender from './components/BoardRender'
 
 const Game = () => {
     // TODO:
-    // show hits
     // update remaining shots
     // place ships
     // place ships without dups
@@ -34,7 +33,9 @@ const Game = () => {
     useEffect( () => {
       enemyBoard.placeShips();
       ownBoard.placeShips();
-    })
+      console.log("placed ships");
+      console.log(enemyBoard);
+    }, [])
 
     const makeMove = (e) => {
       console.log("making move!");
