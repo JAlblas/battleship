@@ -1,7 +1,6 @@
-import Ship from './Ship'
-
 const Gameboard = () => {
-    const missedAttacks = [];
+    const availableAttacks = Array(99 - 0 + 1).fill().map((_, idx) => 0 + idx);
+
     const ships = [2,3,3,4,5];
     const grid = initializeGrid();
 
@@ -22,7 +21,6 @@ const Gameboard = () => {
             for (let index = 1; index < ship; index++) {
                 coordList.push(randomStartCoord + index);  
             }
-            let newShip = Ship(coordList);
 
             for (let index = 0; index < ship; index++) {
                 grid[randomStartCoord + index].hasShip = true;  
@@ -47,7 +45,7 @@ const Gameboard = () => {
     }
 
     return {
-        missedAttacks,
+        availableAttacks,
         ships,
         grid,
         placeShips,
