@@ -5,20 +5,20 @@ const GridCell = (props) => {
     const hitMiss = props.isShot;
     if (hitShip) {
       return (
-        <div className="cell" id={props.index} onClick={props.handleClick}>
+        <div className="cell" id={props.index}>
             <p>X</p>
         </div>
       ); 
     } else if (hitMiss) {
       return (
-        <div className="cell" id={props.index} onClick={props.handleClick}>
+        <div className="cell" id={props.index}>
             <p>-</p>
         </div>
       ); 
     } else {
       return (
         <div className="cell" id={props.index} onClick={props.handleClick}>
-            <p></p>
+            <p> </p>
         </div>
       ); 
     }

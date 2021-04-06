@@ -13,7 +13,6 @@ const Gameboard = () => {
     }
 
     function placeShips() {
-        console.log("placing ships!");
         ships.forEach(ship => {
             const coordList = [];
             let randomStartCoord = Math.floor(Math.random() * 90);
@@ -27,13 +26,11 @@ const Gameboard = () => {
                 grid[randomStartCoord + index].hasShip = true;  
             }
         });
-        console.log(grid);
     }
 
     const receiveAttack = (moveCoord) => {
         console.log(moveCoord);
-        console.log(grid[moveCoord]);
-        if (grid[moveCoord] !== "") {
+        if (grid[moveCoord].isShot === false) {
             grid[moveCoord].isShot = true;
             if (grid[moveCoord].hasShip) {
                 console.log("BOOM!");

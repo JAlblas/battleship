@@ -5,7 +5,7 @@ import GridCell from './GridCell'
 const BoardRender = (props) => {
     const { board, currentPlayer } = props;
 
-    const listItemsEnemy = currentPlayer == 0 ? 
+    const listItemsEnemy = currentPlayer === 0 ? 
       (board.grid.map((cell, index) =>
         <GridCell index={index} key={index} handleClick={props.makeMove} isShot={cell.isShot} hasShip={cell.hasShip}/>
       ))   : 

@@ -8,7 +8,7 @@ import BoardRender from './components/BoardRender'
 
 const Game = () => {
     // TODO:
-    // update remaining shots
+    // fix bug second shot on same square
     // place ships
     // place ships without dups
     // win condition  
@@ -16,8 +16,8 @@ const Game = () => {
 
     const players = [Player(true), Player(false)];
     const [currentPlayer, setCurrentPlayer] = useState(0);
-    const [enemyBoard, setEnemyBoard] = useState(Gameboard());
-    const [ownBoard, setOwnBoard] = useState(Gameboard());
+    const [enemyBoard] = useState(Gameboard());
+    const [ownBoard] = useState(Gameboard());
 
     useEffect( () => {
       if (!players[currentPlayer].humanPlayer) {
@@ -33,19 +33,15 @@ const Game = () => {
     useEffect( () => {
       enemyBoard.placeShips();
       ownBoard.placeShips();
-      console.log("placed ships");
-      console.log(enemyBoard);
-    }, [])
+    }, [enemyBoard, ownBoard])
 
     const makeMove = (e) => {
-      console.log("making move!");
       enemyBoard.receiveAttack(e.target.id);
       currentPlayer === 0 ? setCurrentPlayer(1) : setCurrentPlayer(0);
     }
 
     const makeAImove = (index) => {
       console.log("making AI move!");
-      console.log(index);
       ownBoard.receiveAttack(index);
       currentPlayer === 0 ? setCurrentPlayer(1) : setCurrentPlayer(0);
     }
